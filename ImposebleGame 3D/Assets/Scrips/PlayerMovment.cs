@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
 {
-    private float horizontalInput;
-    private float verticalInput;
-    private float jumpInput;
+    [SerializeField] private float horizontalInput;
+    [SerializeField] private float verticalInput;
+    [SerializeField] private float jumpInput;
     private Vector3 movedirection;
-    private Rigidbody objRb;
-    public float speed ;
+    [SerializeField] private Rigidbody objRb;
+    [SerializeField] private float force = 5.0f;
+    [SerializeField] private int maxSpeed = 10;
 
     void Start()
     {
@@ -18,13 +19,14 @@ public class PlayerMovment : MonoBehaviour
 
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        //horizontalInput = Input.GetAxis("Horizontal");
+        //verticalInput = Input.GetAxis("Vertical");
         jumpInput = Input.GetAxis("Jump");
-        movedirection = new Vector3(horizontalInput , jumpInput ,verticalInput);
+        movedirection = new Vector3(0 , jumpInput ,1);
     }
     void FixedUpdate()
     {
-        objRb.velocity = movedirection * speed;
+        //if ()
+        objRb.AddForce(movedirection * force);
     }
 }
