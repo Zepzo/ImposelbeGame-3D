@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private float horizontalInput;
+    private float verticalInput;
+    private float jumpInput;
+    private Vector3 movedirection;
+    private Rigidbody objRb;
+    public float speed ;
+
     void Start()
     {
-        
+        objRb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
+        jumpInput = Input.GetAxis("Jump");
+        movedirection = new Vector3(horizontalInput , jumpInput ,verticalInput);
+    }
+    void FixedUpdate()
+    {
+        objRb.velocity = movedirection * speed;
     }
 }
