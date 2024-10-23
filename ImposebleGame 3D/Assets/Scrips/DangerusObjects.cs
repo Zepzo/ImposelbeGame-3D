@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class DangerusObjects : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerMovment player = collision.gameObject.GetComponent<PlayerMovment>();
+            player.death();
+        }
     }
 }
